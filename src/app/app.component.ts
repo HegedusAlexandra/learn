@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { PriceCardComponent } from './common/price-card/price-card.component';
+import { PlanService } from './service/plan.service';
 
 interface Plan {
   name: string;
@@ -17,38 +18,18 @@ interface Plan {
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+  planService = inject(PlanService)
   title = 'architect';
   headers: string[] = ['Pricing example', 'Pricing', 'Compare Plans'];
-  pricing: Plan[] = [
-    {
-      name: 'Free',
-      price: 0,
-      users: 10,
-      storage: 2,
-      email: 'Email support',
-    },
-    {
-      name: 'Pro',
-      price: 15,
-      users: 20,
-      storage: 10,
-      email: 'Priority email support',
-    },
-    {
-      name: 'Enterprise',
-      price: 29,
-      users: 30,
-      storage: 15,
-      email: 'Phone and email support',
-    },
-  ];
+  pricing = this.planService.pricing;
   isQuestionShow: boolean = false;
   userQuestion: string = '';
   classes: { [k: string]: string } = {
     bg: 'bg-primary',
     txt: 'text-white',
   };
-  onChoosePlan(): void {
+  onChoosePlan(plan:Plan): void {
+    console.log(plan)
     this.isQuestionShow = true;
   }
   onOrder(plan: Plan): void {

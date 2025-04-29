@@ -244,13 +244,13 @@
     <main>
       <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
         <div class="col">
-          <app-price-card></app-price-card>
+          <app-price-card [plan] = "pricing[0]" (onChoose)="onChoosePlan($event)" ></app-price-card>
         </div>
         <div class="col">
-          <app-price-card></app-price-card>
+          <app-price-card [plan] = "pricing[1]" (onChoose)="onChoosePlan($event)" [btnClass] = "['btn-primary']"></app-price-card>
         </div>
-        <div class="col">
-          <app-price-card></app-price-card>
+        <div class="col"> 
+          <app-price-card [plan] = "pricing[2]" (onChoose)="onChoosePlan($event)" [btnClass] = "['btn-primary']" ></app-price-card>
         </div>
       </div>
 
